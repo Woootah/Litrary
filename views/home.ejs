@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs'); %>
+<body>
+    <%- include('./partials/nav.ejs'); %>
+
+        <% if (books.length > 0){ %>
+            <% books.forEach(book => { %>
+                <a href="/<%= book._id%>" class="book-wrapper">
+                    <h3 class="book-title" name="book-title"><%= book.title%></h3>
+                    <p class="book-snippet" name="book-snippet"><%= book.snippet%></p>
+                </a>
+            <%})%>
+        <%}else {%>
+            <p class="empt">So empty . . .</p>
+        <%}%>
+
+
+
+    <%- include('./partials/footer.ejs'); %>
+
+</body>
+</html>

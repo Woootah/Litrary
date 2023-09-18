@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs'); %>
+<body>
+    <%- include('./partials/nav.ejs'); %>
+
+    <div class="book-detail">
+        <h1><%= book.title %></h1>
+        <p class="snippet"><%= book.snippet %></p>
+        <p class="body"><%= book.body %></p>
+        <a class="delete" data-id="<%= book._id%>">Delete</a>
+    </div>
+
+    <%- include('./partials/footer.ejs'); %>
+
+    <script>
+        const del = document.querySelector('.delete'); 
+
+        del.addEventListener('click', (e) => {
+            const endpoint = `/${del.dataset.id}`; 
+
+            fetch(endpoint, {
+                method: 'DELETE'
+            })
+
+            .then((response) => response.json())
+            .then((data) => {window.location.href = data.redirect})
+            .catch((err) => {console.log(err)})
+        })
+
+
+    </script>
+</body>
+</html>
